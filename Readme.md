@@ -1,7 +1,7 @@
 # Учебный проект «Код и Магия» [![Build status][travis-image]][travis-url]
 
 * Студент: [Egor Radaev](https://up.htmlacademy.ru/javascript/19/user/1342395).
-* Наставник: `Неизвестно`.
+* Наставник: [Михаил Полюбай](https://htmlacademy.ru/profile/id1342307).
 
 ---
 
