@@ -35,7 +35,7 @@ var renderResultPlayer = function (ctx, xscore, yscore, color) {
 window.renderStatistics = function (ctx, names, times) {
   // Копируем массив times в массив sortedTimes
   var sortedTimes = times.slice(); // так лучше, чем через for
-  sortedTimes.sort(function(a, b) { // сортировка через .sort действительно короче ))
+  sortedTimes.sort (function(a, b) { // сортировка через .sort действительно короче ))
     return b - a;
   });
 
@@ -52,5 +52,5 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillText(Math.round(times[i]), COLUMN_RESULT_X + GAP_PX_5 + (COLUMN_WIDHT + COLUMN_GAP) * i, COLUMN_RESULT_Y - yscore - GAP_PX_10);
     // подписываем столбцы результатов именами игроков снизу
     ctx.fillText(names[i], COLUMN_RESULT_X + (COLUMN_WIDHT + COLUMN_GAP) * i, WINDOW_RESULTS_HEIGHT - GAP_PX_20);
-  };
-}
+  }
+};
