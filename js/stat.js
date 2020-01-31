@@ -36,9 +36,9 @@ window.renderStatistics = function (ctx, names, times) {
   // Копируем массив times в массив sortedTimes
   var sortedTimes = times.slice(); // так лучше, чем через for
   // Сортируем массив от большего к меньшему
-  sortedTimes.sort (function (a, b) {
+  sortedTimes.sort(function (a, b){
     return b - a;
-  } ); // сортировка через .sort действительно короче ))
+  }); // сортировка через .sort действительно короче ))
 
   renderWindow(ctx);
   var color = '';
@@ -46,7 +46,7 @@ window.renderStatistics = function (ctx, names, times) {
     var yscore = Math.round(times[i] / sortedTimes[0] * COLUMN_HEIGHT_MAX);
     var xscore = i * (COLUMN_WIDHT + COLUMN_GAP);
     // выбираем цвет для колонки с результатами в зависимости от имени игрока
-    names[i] === 'Вы' ? ( color = 'rgba(255, 0, 0, 1)' ) : ( color = 'hsl(240 ' + Math.round(Math.random() * 100) + '% 50%)' );
+    names[i] === 'Вы' ? (color = 'rgba(255, 0, 0, 1)') : (color = 'hsl(240 ' + Math.round(Math.random() * 100) + '% 50%)');
     // рисуем столбцы с результатов для каждого игрока
     renderResultPlayer(ctx, xscore, yscore, color);
     // подписываем столбцы результатов числом миллисекунд сверху
