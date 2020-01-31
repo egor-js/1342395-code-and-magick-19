@@ -47,9 +47,9 @@ window.renderStatistics = function (ctx, names, times) {
     var xscore = i * (COLUMN_WIDHT + COLUMN_GAP);
     // выбираем цвет для колонки с результатами в зависимости от имени игрока
     if (names[i] === 'Вы') {
-      color = 'rgba(255, 0, 0, 1)'
+      color = 'rgba(255, 0, 0, 1)';
     } else {
-      color = 'hsl(240 ' + Math.round(Math.random() * 100) + '% 50%)'
+      color = 'hsl(240 ' + Math.round(Math.random() * 100) + '% 50%)';
     }
     // names[i] === 'Вы' ? (color = 'rgba(255, 0, 0, 1)') : (color = 'hsl(240 ' + Math.round(Math.random() * 100) + '% 50%)');
     // рисуем столбцы с результатов для каждого игрока
