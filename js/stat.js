@@ -35,7 +35,10 @@ var renderResultPlayer = function (ctx, xscore, yscore, color) {
 window.renderStatistics = function (ctx, names, times) {
   // Копируем массив times в массив sortedTimes
   var sortedTimes = times.slice(); // так лучше, чем через for
-  sortedTimes.sort (function (a, b) {return b - a;});// сортировка через .sort действительно короче ))
+  // Сортируем массив от большего к меньшему
+  sortedTimes.sort (function (a, b) {
+    return b - a;
+  } ); // сортировка через .sort действительно короче ))
 
   renderWindow(ctx);
   var color = '';
