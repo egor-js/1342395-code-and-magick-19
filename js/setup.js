@@ -20,32 +20,41 @@ closeSetupButton.addEventListener('click', function () {
   document.querySelector('.setup').classList.add('hidden');
 });
 
-var bigWizardCoat = document.querySelector('.setup-wizard').querySelector('.wizard');
+var bigWizard = document.querySelector('.setup-wizard').querySelector('.wizard');
+var bigWizardCoat = document.querySelector('.setup-wizard').querySelector('.wizard-coat');
 var indexCoatColor = 1;
 bigWizardCoat.addEventListener('click', function () {
-  bigWizardCoat.querySelector('.wizard-coat').style.fill = WIZARD_COATS_COLOR[indexCoatColor++];
+    bigWizard.querySelector('.wizard-coat').style.fill = WIZARD_COATS_COLOR[indexCoatColor++];
   if (indexCoatColor === WIZARD_COATS_COLOR.length) {
     indexCoatColor = 0;
   }
 });
-
-var bigWizardFireball = document.querySelector('.setup-fireball');
-var indexFireballColor = 1;
-bigWizardFireball.addEventListener('click', function () {
-  bigWizardFireball.style.fill = FIREBALL_COLOR[indexFireballColor++]; //querySelector('.fireball-color')
-  if (indexFireballColor === FIREBALL_COLOR.length) {
-    indexFireballColor = 0;
+var indexColor = 1;
+var bigWizardFireball = document.querySelector('.setup-fireball-wrap');
+bigWizardFireball.addEventListener('click', function (evt) {
+  bigWizardFireball.style.background = FIREBALL_COLOR[indexColor++];
+  if (indexColor === FIREBALL_COLOR.length) {
+    indexColor = 0;
   }
 });
+
+var bigWizardEyes = document.querySelector('.setup-wizard').querySelector('.wizard-eyes');
+bigWizardEyes.addEventListener('click', function (evt) {
+  bigWizardEyes.style.fill = WIZARD_EYES_COLOR[indexColor++];
+  if (indexColor === WIZARD_EYES_COLOR.length) {
+    indexColor = 0;
+  }
+});
+
 
 var generateName = function () {
   return Math.random() > 0.5 ? WIZARD_NAMES[Math.round(Math.random() * (WIZARD_NAMES.length - 1))] + ' ' + WIZARD_SURNAMES[Math.round(Math.random() * (WIZARD_SURNAMES.length - 1))] : WIZARD_SURNAMES[Math.round(Math.random() * (WIZARD_SURNAMES.length - 1))] + ' ' + WIZARD_NAMES[Math.round(Math.random() * (WIZARD_NAMES.length - 1))];
 };
 var generateCoatColor = function () {
-  return WIZARD_COATS_COLOR[Math.round(Math.random() * 5)];
+  return WIZARD_COATS_COLOR[Math.round(Math.random() * (WIZARD_COATS_COLOR.length - 1))];
 };
 var generateEyesColor = function () {
-  return WIZARD_EYES_COLOR[Math.round(Math.random() * 4)];
+  return WIZARD_EYES_COLOR[Math.round(Math.random() * (WIZARD_EYES_COLOR.length - 1))];
 };
 // собрал в цикл заполнение массива со свойствами волшебников
 for (var i = 0; i < wizards.length; i++) {
