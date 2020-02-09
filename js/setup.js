@@ -16,63 +16,83 @@ var bigWizard = document.querySelector('.setup-wizard').querySelector('.wizard')
 var bigWizardCoat = document.querySelector('.setup-wizard').querySelector('.wizard-coat');
 var bigWizardFireball = document.querySelector('.setup-fireball-wrap');
 var bigWizardEyes = document.querySelector('.setup-wizard').querySelector('.wizard-eyes');
+var formInputs = document.querySelector('form.setup-wizard-form');
 var ESC_KEY = 'Escape';
 var ENTER_KEY = 'Enter';
+var SETUP_WINDOW = document.querySelector('.setup');
 
+formInputs.setAttribute('url', 'https://js.dump.academy/code-and-magick');
+formInputs[1].setAttribute('minlength', '2');
+formInputs[5].setAttribute('type', 'submit');
 openSetupButton.querySelector('img').setAttribute('tabindex', '0');
 openSetupButton.querySelector('img').setAttribute('aria-role', 'button');
 closeSetupButton.setAttribute('tabindex', '0');
 closeSetupButton.setAttribute('aria-role', 'button');
-// console.log(closeSetupButton.querySelector('span'));
 // функции открытия/закрытия окна и кликов по элементам
 function onButtonOpenSetup() {
-  document.querySelector('.setup').classList.remove('hidden');
+  SETUP_WINDOW.classList.remove('hidden');
   document.addEventListener('keydown', onKeyCloseSetup);
+  closeSetupButton.addEventListener('click', onButtonCloseSetup);
   closeSetupButton.addEventListener('keydown', onKeyEnterCloseSetup);
-}
-function onButtonCloseSetup() {
-  document.querySelector('.setup').classList.add('hidden');
-  document.removeEventListener('keydown', onKeyCloseSetup);
 }
 function onKeyOpenSetup(evt) {
   if (evt.key === ENTER_KEY) {
-    document.querySelector('.setup').classList.remove('hidden');
+    SETUP_WINDOW.classList.remove('hidden');
     document.addEventListener('keydown', onKeyCloseSetup);
+    closeSetupButton.addEventListener('click', onButtonCloseSetup);
+    closeSetupButton.addEventListener('keydown', onKeyEnterCloseSetup);
   }
+}
+function onButtonCloseSetup() {
+  SETUP_WINDOW.classList.add('hidden');
+  document.removeEventListener('keydown', onKeyCloseSetup);
+  closeSetupButton.removeEventListener('click', onButtonCloseSetup);
+  closeSetupButton.removeEventListener('keydown', onKeyEnterCloseSetup);
 }
 function onKeyCloseSetup(evt) {
   if (evt.key === ESC_KEY) {
-    document.querySelector('.setup').classList.add('hidden');
-    document.removeEventListener('keydown', onKeyCloseSetup);
+    if (evt.target !== formInputs[1]) {
+      SETUP_WINDOW.classList.add('hidden');
+      document.removeEventListener('keydown', onKeyCloseSetup);
+      closeSetupButton.removeEventListener('click', onButtonCloseSetup);
+      closeSetupButton.removeEventListener('keydown', onKeyEnterCloseSetup);
+    }
   }
 }
 function onKeyEnterCloseSetup(evt) {
   if (evt.key === ENTER_KEY) {
-    document.querySelector('.setup').classList.add('hidden');
+    SETUP_WINDOW.classList.add('hidden');
     document.removeEventListener('keydown', onKeyCloseSetup);
+    closeSetupButton.removeEventListener('click', onButtonCloseSetup);
+    closeSetupButton.removeEventListener('keydown', onKeyEnterCloseSetup);
   }
 }
+
+openSetupButton.addEventListener('click', onButtonOpenSetup);
+openSetupButton.addEventListener('keydown', onKeyOpenSetup);
+
 function onButtonCoat() {
+  formInputs[2].value = WIZARD_COATS_COLOR[indexCoatColor];
   bigWizard.querySelector('.wizard-coat').style.fill = WIZARD_COATS_COLOR[indexCoatColor++];
   if (indexCoatColor === WIZARD_COATS_COLOR.length) {
     indexCoatColor = 0;
   }
 }
-function onButtonFireball() {
-  bigWizardFireball.style.background = FIREBALL_COLOR[indexColor++];
-  if (indexColor === FIREBALL_COLOR.length) {
-    indexColor = 0;
-  }
-}
 function onButtonEyes() {
+  formInputs[3].value = WIZARD_EYES_COLOR[indexColor];
   bigWizardEyes.style.fill = WIZARD_EYES_COLOR[indexColor++];
   if (indexColor === WIZARD_EYES_COLOR.length) {
     indexColor = 0;
   }
 }
-openSetupButton.addEventListener('click', onButtonOpenSetup);
-closeSetupButton.addEventListener('click', onButtonCloseSetup);
-openSetupButton.addEventListener('keydown', onKeyOpenSetup);
+function onButtonFireball() {
+  formInputs[4].value = FIREBALL_COLOR[indexColor];
+  bigWizardFireball.style.background = FIREBALL_COLOR[indexColor++];
+  if (indexColor === FIREBALL_COLOR.length) {
+    indexColor = 0;
+  }
+}
+
 bigWizardCoat.addEventListener('click', onButtonCoat);
 bigWizardFireball.addEventListener('click', onButtonFireball);
 bigWizardEyes.addEventListener('click', onButtonEyes);
